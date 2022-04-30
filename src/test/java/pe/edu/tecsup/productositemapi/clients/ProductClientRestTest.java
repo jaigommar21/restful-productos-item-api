@@ -1,4 +1,4 @@
-package pe.edu.tecsup.productositemapi.cliente;
+package pe.edu.tecsup.productositemapi.clients;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import pe.edu.tecsup.productositemapi.clients.ProductoClienteRest;
 import pe.edu.tecsup.productositemapi.models.Producto;
 
 @SpringBootTest
@@ -28,7 +29,11 @@ public class ProductClientRestTest {
 	public void consulta() {
 		List<Producto> productos 
 			= productoClienteRest.listar();
-		logger.info(productos.toString());
+		
+		//logger.info(productos.toString());
+		
+		productos.stream().forEach(item -> logger.info(item.toString()));
+		
 		assertThat(productos.isEmpty(), is(false));
 	}
 	
@@ -36,7 +41,9 @@ public class ProductClientRestTest {
 	public void findById() {
 		Long id = 1L;
 		Producto producto = productoClienteRest.detalle(id);
+		
 		logger.info(producto.toString());
+		
 		assertThat(producto,is(notNullValue()));
 	}
 }

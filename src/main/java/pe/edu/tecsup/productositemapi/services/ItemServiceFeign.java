@@ -1,12 +1,12 @@
 package pe.edu.tecsup.productositemapi.services;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.tecsup.productositemapi.cliente.ProductoClienteRest;
+import pe.edu.tecsup.productositemapi.clients.ProductoClienteRest;
 import pe.edu.tecsup.productositemapi.models.Item;
 import pe.edu.tecsup.productositemapi.models.Producto;
 
@@ -20,7 +20,13 @@ public class ItemServiceFeign {
 		
 		List<Producto> productos = productoClienteRest.listar();
 		
-		return productos.stream().map(p -> new Item(p, 1)).collect(Collectors.toList());
+		List<Item> items = new ArrayList<Item>();
+		for( Producto prod : productos )
+			items.add(new Item(prod,1));
+		
+		return items;	
+
+		//return productos.stream().map(p -> new Item(p, 1)).collect(Collectors.toList());
 	}
 	
 	public Item findById(Long id, Integer cantidad) {

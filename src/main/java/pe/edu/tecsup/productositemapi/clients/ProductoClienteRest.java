@@ -1,4 +1,4 @@
-package pe.edu.tecsup.productositemapi.cliente;
+package pe.edu.tecsup.productositemapi.clients;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import pe.edu.tecsup.productositemapi.config.FeignConfig;
 import pe.edu.tecsup.productositemapi.models.Producto;
 
 //@FeignClient(name = "productos-api"/*, url = "localhost:8080"*//*, fallback = ProductoClienteRestFallback.class*//*, fallbackFactory =  ProductoClienteRestFallbackFactory.class*/)
-@FeignClient(name = "productos-api", url = "localhost:8080",configuration = FeignConfig.class)
-//@FeignClient(name = "", url = "localhost:8080")
+//@FeignClient(name = "productos-api", url = "localhost:8080",configuration = FeignConfig.class)
+@FeignClient(name = "productos-api", url = "localhost:8080")
 public interface ProductoClienteRest {
 
 	@GetMapping("/productos")
